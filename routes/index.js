@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const mongoose = require("mongoose")
-const User =mongoose.model("User")
+const User = mongoose.model("User")
 
 router.post("/users/register", (req, res) => {
     User.create(req.body)
@@ -19,6 +19,7 @@ router.get("/user", (req,res)=>{
         })
 }) // select all
 router.get("/user/:id",(req,res)=>{
+    
     const id =req.params.id
     console.log("id", id)
     User.findById(id).exec()
