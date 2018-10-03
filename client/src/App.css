@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-image: url("/images/Plugged_Icon.png");
+  background-repeat: no-repeat;
 }
 
 
