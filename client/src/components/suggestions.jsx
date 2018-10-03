@@ -6,11 +6,11 @@ import React from 'react'
 const Suggestions = (props) => {
   console.log(props)
   const options = props.results.map(r => (
-    <li key={r.artistId + r.artistNames}>
+    <div key={r.artistId + r.artistNames}>
       {r.artistName}
-    </li>
+    </div>
   ))
-  return <ul>{options}</ul>
+  return <div>{options}</div>
 }
 
 
