@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Suggestions from './suggestions'
-import { CLIENT_RENEG_LIMIT } from 'tls';
+import { CLIENT_RENEG_LIMIT, DEFAULT_ECDH_CURVE } from 'tls';
 
 
 const { API_KEY } = process.env
-const API_URL = "https://itunes.apple.com/search?term= + search"
-
+const API_URL = "https://itunes.apple.com/search?term="
+const DEFAULT_QUERY="+"
 
 
 
@@ -18,11 +18,13 @@ class searchBar extends Component {
     render() {
         
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
+                
                 <input
                     placeholder="Search for..."
                     ref={input => this.searchBar = input}
                     onChange={this.handleInputChange}
+                    
                 />
                 <Suggestions results={this.state.results} />
             </form>
@@ -31,11 +33,12 @@ class searchBar extends Component {
 
     componentDidMount() {
         this.getInfo()
-        this.handleInputChange()
+        
     }
 
     getInfo = () => {
-        axios.get(`${API_URL}`)
+       const  apiString=API_URL + (this.state.query || DEFAULT_QUERY)
+        axios.get(apiString)
             .then(({ data }) => {
                 this.setState({
                     results: data.results // returns an object named data, 
@@ -44,21 +47,40 @@ class searchBar extends Component {
             })
     }
 
+    handleSubmit= (event)=>{
+        event.preventDefault()
+        this.getInfo()
+    }
+     
     
-    
-    handleInputChange = () => {
+    handleInputChange = (event) => {
+        console.log(event.target.value)
         this.setState({
-            query: this.searchBar.value
-        }, () => {
-            if (this.state.query && this.state.query.length > 1) {
-                if (this.state.query.length % 2 === 0) {
-                    this.getInfo()
-                }
-            } else if (!this.state.query) {
-            }
+            query:event.target.value
+        })
+        this.setState({
+
+       // query: this.searchBar.value
+        //}, () => {
+            //if (this.state.query && this.state.query.length > 1) {
+                //if (this.state.query.length % 2 === 0) {
+                //    this.getInfo()
+               // }
+            //} else if (!this.state.query) {
+           // }
         })
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 export default searchBar
 
