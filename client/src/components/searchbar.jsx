@@ -6,7 +6,7 @@ import { CLIENT_RENEG_LIMIT, DEFAULT_ECDH_CURVE } from 'tls';
 
 const { API_KEY } = process.env
 const API_URL = "https://itunes.apple.com/search?term="
-const DEFAULT_QUERY="50 cent"
+const DEFAULT_QUERY="+"
 
 
 
@@ -58,18 +58,29 @@ class searchBar extends Component {
         this.setState({
             query:event.target.value
         })
-        // this.setState({
-        //     query: this.searchBar.value
-        // }, () => {
-        //     if (this.state.query && this.state.query.length > 1) {
-        //         if (this.state.query.length % 2 === 0) {
-        //             this.getInfo()
-        //         }
-        //     } else if (!this.state.query) {
-        //     }
-        // })
+        this.setState({
+
+       // query: this.searchBar.value
+        //}, () => {
+            //if (this.state.query && this.state.query.length > 1) {
+                //if (this.state.query.length % 2 === 0) {
+                //    this.getInfo()
+               // }
+            //} else if (!this.state.query) {
+           // }
+        })
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 export default searchBar
 
