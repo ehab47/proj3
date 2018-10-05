@@ -7,8 +7,10 @@ const Suggestions = (props) => {
   console.log(props)
   const options = props.results.map(r => (
     <div key={r.artistId + r.artistNames}>
-      {r.artistName}
-      <a href={r.artistViewUrl}>view in store</a>
+      <img src={r.artworkUrl60}></img> 
+      {r.artistName + " "} 
+      {r.trackName} 
+      <a href={r.artistViewUrl}>Purchase Now</a>
     </div>
   ))
   return <div>{options}</div>
