@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+// comment out = command /
 
 
 const Suggestions = (props) => {
@@ -8,7 +8,9 @@ const Suggestions = (props) => {
   const options = props.results.map(r => (
     <div key={r.artistId + r.artistNames}>
       {r.artistName}
-      <a href={r.artistViewUrl}>view in store</a>
+      <a href={r.trackViewUrl}></a>
+      
+
     </div>
   ))
   return <div>{options}</div>
